@@ -11,12 +11,16 @@ namespace MapillaryCLI
 {
 	public static class ImageConverter
 	{
-		public static void foo(Image image)
+		public static void SaveImageTo(Image image, string target)
 		{
 			var imagePath = image.GetFile(ImageSize.ExtraLarge);
 			using (WebClient client = new WebClient())
 			{
-				client.DownloadFile(new Uri(imagePath), @"C:\Users\Wert007\Desktop\dev-mapillary-image.jpeg");
+				try
+				{
+					client.DownloadFile(new Uri(imagePath), target);
+				}
+				catch { }
 			}
 		}
 	}

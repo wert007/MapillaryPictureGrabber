@@ -23,6 +23,10 @@ namespace Mapillary.Api
 		{
 			return SearchImage(clientId, null, closeTo, null, null, null, null, per_page, null, radius, null, null, null, null);
 		}
+		public static FeatureCollection<Image> SearchImage(string clientId, Coordinates closeTo, Coordinates lookAt, int radius = 200, int per_page = 200)
+		{
+			return SearchImage(clientId, null, closeTo, null, null, lookAt, null, per_page, null, radius, null, null, null, null);
+		}
 		/// <summary>
 		/// The response is a FeatureCollection object with a list of image features ordered by captured_at by default. If closeto is provided, image features will be ordered by their distances to the closeto location.
 		/// </summary>
@@ -80,7 +84,7 @@ namespace Mapillary.Api
 											geometryToAdd = new Geometry((string)reader.Value);
 											break;
 										default:
-											Console.WriteLine($"Unhandled Type ({(string)reader.Value})");
+										//	Console.WriteLine($"Unhandled Type ({(string)reader.Value})");
 											break;
 									}
 									break;
@@ -137,7 +141,7 @@ namespace Mapillary.Api
 									geometryToAdd.Coordinates = new Coordinates(longitude, lattitude);
 									break;
 								default:
-									Console.WriteLine($"Unhandled Property ({reader.Value}) occured.");
+									//Console.WriteLine($"Unhandled Property ({reader.Value}) occured.");
 									break;
 							}
 							break;
@@ -162,7 +166,7 @@ namespace Mapillary.Api
 						case JsonToken.Bytes:
 						case JsonToken.None:
 						default:
-							Console.WriteLine($"Type {reader.TokenType} occured. Value is {reader.Value}.");
+						//	Console.WriteLine($"Type {reader.TokenType} occured. Value is {reader.Value}.");
 							break;
 							#endregion
 					}
@@ -217,7 +221,7 @@ namespace Mapillary.Api
 			var client = new HttpClient();
 			var requestMessage = new HttpRequestMessage(HttpMethod.Get, requestString.ToString());
 			var result = client.SendAsync(requestMessage).Result.Content.ReadAsStringAsync().Result;
-			using (FileStream fs = new FileStream(@"C:\Users\Wert007\Desktop\dev-mapillary-test-2.json", FileMode.Create))
+			using (FileStream fs = new FileStream(@"C:\Users\Wert007\Desktop\dev-mapillary-test.json", FileMode.Create))
 			using (StreamWriter writer = new StreamWriter(fs))
 				writer.Write(result);
 			return new StringReader(result);

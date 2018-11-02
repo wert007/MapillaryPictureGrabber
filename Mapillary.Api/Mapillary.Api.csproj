@@ -43,7 +43,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Class1.cs" />
     <Compile Include="DataTypes\BoundingBox.cs" />
     <Compile Include="DataTypes\Coordinates.cs" />
     <Compile Include="DataTypes\Image.cs" />

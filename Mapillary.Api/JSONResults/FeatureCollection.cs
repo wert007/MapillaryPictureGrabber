@@ -12,7 +12,7 @@ namespace Mapillary.Api.JSONResults
 		private List<Feature<T>> _features;
 		public IEnumerable<Feature<T>> Features => _features;
 
-		internal void Add(Feature<T> featureToAdd)
+		public void Add(Feature<T> featureToAdd)
 		{
 			_features.Add(featureToAdd);
 		}
